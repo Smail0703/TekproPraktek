@@ -1,0 +1,31 @@
+package JavaProblems.Soal2;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ProblemTwo {
+    public static void main(String[] args) {
+        List<Student> students = Arrays.asList(
+            new Student(101,"Joe"),
+            new Student(102,"Zulkifli"),
+            new Student(103,"Riza"),
+            new Student(104,"Alice"),
+            new Student(105,"Joshua")
+        );
+
+        List<Student> ans = students.stream()
+        .sorted((s1,s2) -> {
+            if(s1.getName().equalsIgnoreCase(s2.getName())){
+                return Integer.compare(s1.getId(),s2.getId());
+            }else{
+                return s1.getName().compareTo(s2.getName());
+            }
+        })
+        .collect(Collectors.toList());
+
+        for(Student student : ans){
+            System.out.println(student);
+        }
+    }
+}
